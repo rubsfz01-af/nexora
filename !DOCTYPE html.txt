@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA AI — Autonomous Business Intelligence</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f5fb;--panel:#ffffff;--ink:#151d33;--muted:#707c98;--line:#e1e6f1;--nav:#10172b;--nav2:#1c2744;--blue:#5458df;--blue2:#eeefff;--green:#079b78;--greenbg:#e4f7f1;--red:#dc4357;--redbg:#fff0f2;--amber:#bd7d0a;--amberbg:#fff5df;--purple:#7956d8;--shadow:0 10px 32px rgba(26,36,76,.055)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-size:13px;font-weight:500;letter-spacing:-.08px}button,input,select,textarea{font:inherit} body,button,input,select,textarea{font-family:'Manrope',system-ui,sans-serif} h1,h2,h3,h4,b,strong,.page-title,.metric .value,.brand{font-weight:700}button{cursor:pointer}.app{display:grid;grid-template-columns:236px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--nav);color:#d8deee;padding:22px 14px;display:flex;flex-direction:column;gap:25px;min-height:100vh}.brand{display:flex;align-items:center;gap:10px;padding:0 8px;font-weight:800;font-size:17px;color:white;letter-spacing:-.5px}.brandmark{width:32px;height:32px;border-radius:10px;background:linear-gradient(145deg,#7d8aff,#4b53d8);display:grid;place-items:center;color:#fff;font-size:16px;box-shadow:0 5px 14px #4e58d744}.brand small{display:block;font-size:9px;letter-spacing:1.5px;color:#8490ac;margin-top:2px}.navlabel{font-size:10px;letter-spacing:1.6px;color:#6f7d9c;padding:0 11px;margin-bottom:7px}.nav{display:grid;gap:4px}.nav button{border:0;background:transparent;color:#aab4cb;padding:11px 12px;border-radius:9px;text-align:left;display:flex;align-items:center;gap:11px;font-weight:600;transition:.15s}.nav button:hover{background:#1a2540;color:white}.nav button.active{background:#273451;color:#fff;box-shadow:inset 3px 0 #7b86ff}.nav .ico{width:18px;text-align:center;font-size:15px}.nav .count{margin-left:auto;background:#f04c62;color:white;border-radius:10px;padding:2px 6px;font-size:10px}.sidebar-bottom{margin-top:auto;border-top:1px solid #25304a;padding:15px 8px 0;display:flex;align-items:center;gap:9px;color:#9eabc5;font-size:11px}.avatar{width:29px;height:29px;border-radius:50%;background:#34436a;display:grid;place-items:center;color:#fff;font-weight:700}.main{min-width:0;padding:25px 28px 34px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:21px}.eyebrow{color:var(--muted);font-size:11px;margin-bottom:5px}.page-title{font-size:23px;letter-spacing:-.65px;font-weight:800;margin:0}.top-actions{display:flex;align-items:center;gap:9px}.search{width:220px;padding:10px 12px;border:1px solid var(--line);background:#fff;border-radius:9px;color:var(--ink)}.btn{border:1px solid var(--line);background:#fff;color:#34405a;border-radius:8px;padding:9px 12px;font-weight:700;display:inline-flex;align-items:center;gap:7px}.btn:hover{border-color:#bfc8dd}.btn.primary{background:var(--blue);border-color:var(--blue);color:white}.btn.dark{background:#172039;color:white;border-color:#172039}.btn.danger{background:var(--redbg);border-color:#ffd5d9;color:#bd3445}.status-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:20px;background:var(--greenbg);color:#07865f;font-size:11px;font-weight:800}.dot{width:6px;height:6px;border-radius:50%;background:currentColor}.page{display:none}.page.active{display:block}.hero{background:linear-gradient(115deg,#111a32 0%,#202c58 62%,#4844a8 100%);color:#fff;border-radius:17px;padding:24px 25px;position:relative;overflow:hidden;margin-bottom:17px;min-height:218px}.hero:after{content:"";position:absolute;right:-35px;top:-100px;width:390px;height:390px;border:1px solid #ffffff13;border-radius:50%;box-shadow:0 0 0 30px #ffffff06,0 0 0 65px #ffffff04}.hero-content{position:relative;z-index:1;max-width:760px}.hero h2{font-size:25px;line-height:1.2;letter-spacing:-.9px;margin:0 0 10px;max-width:650px}.hero p{color:#bdc6e4;line-height:1.65;margin:0;max-width:660px}.hero-meta{display:flex;gap:10px;align-items:center;margin-top:20px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#9faed8}.hero-meta .tag{padding:5px 8px;border-radius:5px;background:#ffffff12;color:#dbe0ff}.hero-actions{display:flex;gap:8px;margin-top:17px;flex-wrap:wrap}.hero .btn{background:#ffffff12;color:#fff;border-color:#ffffff26}.hero .btn.primary{background:#6872ff;border-color:#6872ff}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#fff;border:1px solid var(--line);border-radius:13px;margin-bottom:17px;overflow:hidden}.metric{padding:17px 19px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric .label{font-size:11px;color:var(--muted);margin-bottom:9px}.metric .value{font-size:27px;letter-spacing:-1px;font-weight:800}.metric .sub{font-size:10px;margin-top:6px;color:var(--green);font-weight:700}.metric .sub.warn{color:var(--amber)}.metric .sub.bad{color:var(--red)}.grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:16px;margin-bottom:16px}.grid.equal{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:19px;min-width:0;box-shadow:var(--shadow);transition:box-shadow .18s ease,border-color .18s ease}.card:hover{box-shadow:0 13px 36px rgba(26,36,76,.075);border-color:#d6dcf0}.card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:15px}.card h3{font-size:14px;margin:0 0 5px;letter-spacing:-.25px}.subtext{font-size:11px;color:var(--muted);line-height:1.5}.tag{display:inline-flex;align-items:center;gap:5px;padding:5px 8px;border-radius:6px;background:#f1f3f8;color:#66718c;font-size:10px;font-weight:700;white-space:nowrap}.tag.green{background:var(--greenbg);color:#07865f}.tag.red{background:var(--redbg);color:#c13a4b}.tag.amber{background:var(--amberbg);color:#a86b00}.tag.blue{background:var(--blue2);color:#4b56d8}.journey{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;margin:14px 0 18px;position:relative}.step{border:1px solid #cdece2;background:#f8fffc;border-radius:9px;padding:10px 9px;min-width:0;position:relative}.step:after{content:"";position:absolute;height:2px;width:8px;background:#7bd6b8;right:-8px;top:25px}.step:last-child:after{display:none}.step.fail{border-color:#ffbfc7;background:#fff5f6;box-shadow:0 5px 16px #e5485b17}.step.pending{border-style:dashed;border-color:#d6dbea;background:#fafbfe}.step-title{font-size:10px;font-weight:800;display:flex;justify-content:space-between;gap:3px}.step-time{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--green);margin-top:9px}.step.fail .step-time{color:var(--red)}.step.pending .step-time{color:#929cb4}.row-between{display:flex;justify-content:space-between;align-items:center;gap:10px}.section-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#8994ad;font-weight:800;margin:16px 0 9px}.list{display:grid;gap:10px}.list-item{display:flex;gap:10px;align-items:flex-start}.list-icon{width:28px;height:28px;border-radius:8px;background:#f0f1ff;color:var(--blue);display:grid;place-items:center;flex-shrink:0}.list-icon.red{background:var(--redbg);color:var(--red)}.list-icon.green{background:var(--greenbg);color:var(--green)}.list-icon.amber{background:var(--amberbg);color:var(--amber)}.list-item strong{display:block;font-size:11px;margin:1px 0 4px}.list-item p{margin:0;color:var(--muted);font-size:10px;line-height:1.5}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:#7c87a1;font-size:10px;font-weight:700;padding:10px 9px;border-bottom:1px solid var(--line)}td{padding:12px 9px;border-bottom:1px solid #edf0f5;font-size:11px}tr:last-child td{border-bottom:0}.mono{font-family:'IBM Plex Mono',monospace;font-size:10px}.progress{height:6px;border-radius:10px;background:#edf0f7;overflow:hidden}.progress span{height:100%;display:block;background:var(--blue);border-radius:10px}.mini-chart{height:150px;width:100%;display:block}.chart-legend{display:flex;gap:15px;font-size:10px;color:var(--muted);margin-top:9px}.legend-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px}.timeline{display:grid;gap:13px}.timeline-item{display:grid;grid-template-columns:54px 15px 1fr;gap:8px;align-items:start}.timeline-time{font:10px 'IBM Plex Mono',monospace;color:#8490aa;padding-top:2px}.timeline-mark{width:12px;height:12px;border:2px solid var(--blue);border-radius:50%;position:relative;margin-top:1px}.timeline-mark:after{content:"";position:absolute;top:10px;left:3px;width:2px;height:26px;background:#e4e8f0}.timeline-item:last-child .timeline-mark:after{display:none}.timeline-mark.red{border-color:var(--red)}.timeline-mark.green{border-color:var(--green)}.timeline-mark.amber{border-color:var(--amber)}.timeline-item strong{font-size:11px;display:block;margin-bottom:4px}.timeline-item p{font-size:10px;color:var(--muted);margin:0;line-height:1.5}.callout{background:#f8f9ff;border:1px solid #e1e5ff;border-radius:10px;padding:12px;display:flex;gap:9px;align-items:flex-start;font-size:11px;line-height:1.5;color:#4f5b7b}.callout b{color:#29345c}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:grid;gap:6px}.field label{font-size:11px;color:#697590;font-weight:700}.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:8px;padding:10px 11px;background:#fff;color:var(--ink);width:100%;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:#929bff;box-shadow:0 0 0 3px #6872ff18}.field textarea{min-height:86px;resize:vertical}.span2{grid-column:span 2}.empty{padding:25px;text-align:center;color:var(--muted)}.assistant-layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:16px}.ai-orb{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;position:relative;flex-shrink:0;background:radial-gradient(circle at 35% 28%,#c7d0ff,#6b72ff 48%,#3434a7 100%);box-shadow:0 4px 16px #5d63ee35;color:white;font-size:19px}.ai-orb:before,.ai-orb:after{content:none!important;display:none!important}.ai-orb.thinking{filter:saturate(.9);box-shadow:0 0 0 4px #6872ff18}.ai-orb.small{width:30px;height:30px;font-size:14px}.ai-status{display:inline-flex;align-items:center;gap:6px}.ai-status .live-dot{width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 0 3px #10b98120}@keyframes orbspin{to{transform:rotate(360deg)}}@keyframes orbpulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.1);opacity:.15}}.finance-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:16px}.finance-kpi{background:#fff;border:1px solid var(--line);border-radius:13px;padding:17px}.finance-kpi .f-label{font-size:11px;color:var(--muted);font-weight:600}.finance-kpi .f-value{font-size:24px;font-weight:800;letter-spacing:-.6px;margin:8px 0 5px}.finance-kpi .f-foot{font-size:10px;color:var(--green);font-weight:700}.finance-kpi .f-icon{float:right;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:#eef0ff;color:var(--blue)}.notice-row{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid #edf0f5}.notice-row:last-child{border-bottom:0}.notice-dot{width:9px;height:9px;border-radius:50%;margin-top:5px;flex-shrink:0}.notice-row strong{display:block;font-size:11px;margin-bottom:4px}.notice-row p{font-size:10px;color:var(--muted);margin:0;line-height:1.55}.chatbox{height:360px;border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden}.chat-head{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:9px}.chat-messages{padding:15px;overflow:auto;display:flex;flex-direction:column;gap:12px;flex:1;background:#fafbfe}.bubble{max-width:86%;padding:10px 12px;border-radius:11px;background:white;border:1px solid var(--line);font-size:11px;line-height:1.6}.bubble.user{align-self:flex-end;background:#eef0ff;border-color:#dfe2ff}.chat-input{display:flex;padding:10px;gap:8px;border-top:1px solid var(--line);background:#fff}.chat-input input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px}.toggle-row{display:flex;justify-content:space-between;gap:15px;padding:12px 0;border-bottom:1px solid #edf0f5}.toggle-row:last-child{border:0}.toggle-row strong{font-size:11px;display:block;margin-bottom:4px}.toggle-row p{font-size:10px;color:var(--muted);margin:0;line-height:1.45}.switch{width:34px;height:19px;border:0;border-radius:20px;background:#d5dae6;padding:2px;flex-shrink:0}.switch:after{content:"";display:block;width:15px;height:15px;border-radius:50%;background:white;transition:.2s}.switch.on{background:var(--blue)}.switch.on:after{transform:translateX(15px)}.risk-meter{width:100px;height:100px;border-radius:50%;background:conic-gradient(var(--red) 0 82%,#f1e6e8 82% 100%);display:grid;place-items:center;position:relative;flex-shrink:0}.risk-meter:before{content:"";position:absolute;inset:9px;border-radius:50%;background:#fff}.risk-meter span{position:relative;text-align:center;font-weight:800;font-size:22px}.risk-meter small{display:block;font-size:9px;color:var(--muted);font-weight:600}.footer-note{color:#8b95ab;font-size:10px;text-align:center;padding:20px 0 0}.toast{position:fixed;right:22px;bottom:22px;background:#172039;color:white;padding:12px 16px;border-radius:10px;box-shadow:0 8px 28px #0d173044;z-index:20;display:none;font-size:12px}.toast.show{display:block;animation:fade .2s}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}.risk-high{color:var(--red);font-weight:800}.filters{display:flex;gap:8px;flex-wrap:wrap}.filters select{border:1px solid var(--line);border-radius:8px;padding:8px;background:white;color:#4d5874}.hide{display:none!important}
+@media(max-width:1100px){.app{grid-template-columns:205px minmax(0,1fr)}.main{padding:22px 18px}.grid{grid-template-columns:1fr}.grid.equal{grid-template-columns:1fr 1fr}.assistant-layout{grid-template-columns:1fr}.journey{grid-template-columns:repeat(3,minmax(0,1fr))}.step:nth-child(3):after{display:none}}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{min-height:auto;padding:13px;gap:13px}.brand{padding:0 5px}.navlabel,.sidebar-bottom{display:none}.nav{grid-template-columns:repeat(3,minmax(0,1fr))}.nav button{font-size:10px;padding:9px 6px;justify-content:center;gap:5px;flex-direction:column}.nav .ico{font-size:16px}.main{padding:17px 12px}.topbar{align-items:flex-start;flex-direction:column}.top-actions{width:100%;flex-wrap:wrap}.search{flex:1;min-width:140px}.page-title{font-size:21px}.hero{padding:20px 17px}.hero h2{font-size:22px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.grid.equal{grid-template-columns:1fr}.journey{grid-template-columns:repeat(2,minmax(0,1fr))}.step:nth-child(3):after{display:block}.step:nth-child(even):after{display:none}.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.card{padding:14px}.top-actions .status-pill{display:none}}
+
+/* Elite typography refinement: stronger Poppins hierarchy, same navy/indigo/teal palette */
+body{font-weight:600;letter-spacing:-.12px}
+.nav button{font-weight:700}
+.eyebrow,.navlabel,.section-label,.metric .label,.finance-kpi .f-label,th,.field label{font-weight:800}
+.page-title{font-weight:800}
+h1,h2,h3,h4,b,strong,.brand,.metric .value,.finance-kpi .f-value,.step-title,.timeline-item strong,.list-item strong,.notice-row strong,.toggle-row strong{font-weight:800}
+.btn,.status-pill,.tag,.filters select,.switch{font-weight:800}
+td{font-weight:600}
+.hero p,.subtext,.metric .sub,.finance-kpi .f-foot,.list-item p,.timeline-item p,.notice-row p,.toggle-row p{font-weight:600}
+.card{box-shadow:0 10px 30px rgba(26,36,76,.06)}
+.run-console{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);gap:16px;margin-top:16px}
+.run-step{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #edf0f5}
+.run-step:last-child{border-bottom:0}.run-check{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:#e4f7f1;color:#07865f;font-weight:900}.run-check.warn{background:#fff5df;color:#a86b00}.run-check.fail{background:#fff0f2;color:#c13a4b}.run-step strong{display:block;font-size:11px;font-weight:800}.run-step small{display:block;font-size:10px;color:var(--muted);margin-top:3px;font-weight:600}.run-log{font:10px/1.7 'IBM Plex Mono',monospace;background:#10172b;color:#d8e0fa;border-radius:10px;padding:13px;min-height:150px;max-height:250px;overflow:auto;white-space:pre-wrap}.run-log .ok{color:#68e0b5}.run-log .warn{color:#ffd078}.run-log .err{color:#ff8b9b}.confidence-track{height:7px;border-radius:10px;background:#edf0f7;overflow:hidden;margin-top:8px}.confidence-track span{height:100%;display:block;border-radius:10px;background:linear-gradient(90deg,#6872ff,#079b78);width:0;transition:width .4s}
+@media(max-width:760px){.run-console{grid-template-columns:1fr}}
+
+
+/* NEXORA AI refinement */
+:root{--blue:#4f46e5;--shadow:0 12px 36px rgba(21,29,51,.065)}
+body{font-family:'Manrope',system-ui,sans-serif;font-weight:500;letter-spacing:-.18px}
+button,input,select,textarea{font-family:'Manrope',system-ui,sans-serif}
+.page-title,.hero h2{letter-spacing:-.9px}
+.card,.hero,.metrics,.finance-kpi{border-radius:16px}
+.ai-orb{animation:none!important}
+.ai-preparing{display:flex;align-items:center;gap:8px;color:#64708a;font-size:11px}
+.ai-preparing .prep-dot{width:6px;height:6px;border-radius:50%;background:#6673f4;animation:prepPulse 1.2s ease-in-out infinite}
+.ai-preparing .prep-dot:nth-child(2){animation-delay:.15s}.ai-preparing .prep-dot:nth-child(3){animation-delay:.3s}
+@keyframes prepPulse{0%,80%,100%{opacity:.28;transform:translateY(0)}40%{opacity:1;transform:translateY(-2px)}}
+.payment-notice{border:1px solid #d9e4ff;background:linear-gradient(120deg,#f7f8ff,#fff);border-radius:12px;padding:12px;margin:8px 0;font-size:11px;line-height:1.55}
+.payment-notice strong{display:block;margin-bottom:4px;color:#29345c}
+.payment-notice .notice-meta{color:#6d7893;font-size:10px;margin-top:5px}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* ── SYNTH TRACK / MOTION SYSTEM 2.0 ───────────────────────────── */
+:root{
+  --motion-fast:180ms;--motion-mid:360ms;--motion-slow:720ms;
+  --ease-out:cubic-bezier(.16,1,.3,1);--ease-spring:cubic-bezier(.2,.8,.2,1);
+}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(ellipse at 85% -10%,rgba(99,102,241,.075),transparent 36%),
+    radial-gradient(ellipse at -10% 55%,rgba(14,165,133,.045),transparent 30%),
+    var(--bg);
+}
+::selection{background:#c7d2fe;color:#24215e}
+button,.card,.metric,.finance-kpi,.step,.nav button,.tag,.status-pill{
+  -webkit-tap-highlight-color:transparent;
+}
+button{transition:transform var(--motion-fast) var(--ease-out),box-shadow var(--motion-fast),background var(--motion-fast),border-color var(--motion-fast),opacity var(--motion-fast)}
+button:active{transform:translateY(1px) scale(.985)}
+.btn{box-shadow:0 1px 0 rgba(18,27,55,.025)}
+.btn.primary{box-shadow:0 6px 16px rgba(79,70,229,.2)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(79,70,229,.27)}
+.btn.dark:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(16,23,43,.18)}
+.btn:not(.primary):not(.dark):hover{transform:translateY(-1px);box-shadow:0 5px 15px rgba(25,35,70,.07)}
+.brandmark{position:relative;isolation:isolate;overflow:hidden}
+.brandmark:after{content:"";position:absolute;inset:-60%;background:linear-gradient(110deg,transparent 35%,#ffffff80 50%,transparent 65%);transform:translateX(-80%) rotate(15deg);animation:brandSweep 5.5s ease-in-out infinite;z-index:-1}
+@keyframes brandSweep{0%,70%,100%{transform:translateX(-80%) rotate(15deg)}85%{transform:translateX(80%) rotate(15deg)}}
+.sidebar{position:relative;overflow:hidden}
+.sidebar:after{content:"";position:absolute;right:-110px;top:15%;width:210px;height:210px;border-radius:50%;background:#5667f51a;filter:blur(25px);pointer-events:none}
+.nav button{position:relative;overflow:hidden}
+.nav button:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#ffffff0b,transparent);transform:translateX(-110%);transition:transform .55s}
+.nav button:hover:before{transform:translateX(110%)}
+.nav button.active{background:linear-gradient(100deg,#293653,#222e4b);box-shadow:inset 3px 0 #8991ff,0 5px 15px #050a1b25}
+.hero{isolation:isolate;background:linear-gradient(115deg,#10182e 0%,#202c58 56%,#4945ad 100%);box-shadow:0 16px 42px rgba(22,29,69,.13)}
+.hero:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(115deg,transparent 15%,#ffffff08 45%,transparent 70%);background-size:220% 100%;animation:heroShimmer 10s linear infinite}
+.hero:after{animation:heroOrbit 32s linear infinite}
+@keyframes heroShimmer{0%{background-position:180% 0}100%{background-position:-80% 0}}
+@keyframes heroOrbit{to{transform:rotate(360deg)}}
+.hero h2{animation:heroTextIn .75s var(--ease-out) both}
+.hero p{animation:heroTextIn .8s .08s var(--ease-out) both}
+.hero-meta,.hero-actions{animation:heroTextIn .8s .16s var(--ease-out) both}
+@keyframes heroTextIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.card,.metrics,.finance-kpi{transition:transform .32s var(--ease-out),box-shadow .32s var(--ease-out),border-color .32s}
+.card:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(26,36,76,.09);border-color:#d5daf1}
+.metric{position:relative;overflow:hidden;transition:background .25s}
+.metric:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,#6366f1,#14b8a6);transform:scaleX(0);transform-origin:left;transition:transform .42s var(--ease-out)}
+.metric:hover{background:linear-gradient(180deg,#fff,#fafaff)}
+.metric:hover:after{transform:scaleX(1)}
+.metric .value,.finance-kpi .f-value{font-variant-numeric:tabular-nums;transition:color .25s}
+.finance-kpi:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(26,36,76,.09);border-color:#cfd5f3}
+.finance-kpi .f-icon{transition:transform .3s var(--ease-spring)}
+.finance-kpi:hover .f-icon{transform:rotate(-7deg) scale(1.08)}
+.step{transition:transform .25s var(--ease-out),box-shadow .25s,border-color .25s}
+.step:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(24,40,76,.08)}
+.progress span{position:relative;overflow:hidden}
+.progress span:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,#ffffff70,transparent);transform:translateX(-100%);animation:progressGlint 3.5s ease-in-out infinite}
+@keyframes progressGlint{0%,35%{transform:translateX(-100%)}70%,100%{transform:translateX(110%)}}
+.tag{transition:transform .2s,filter .2s}
+.tag:hover{filter:saturate(1.15);transform:translateY(-1px)}
+.ai-orb{animation:orbFloat 4.5s ease-in-out infinite;box-shadow:0 4px 18px #5d63ee40,0 0 0 6px #6872ff0a}
+.ai-orb:before{content:""!important;display:block!important;position:absolute;inset:-5px;border:1px solid #8b93ff80;border-radius:50%;animation:orbRing 3.2s ease-out infinite}
+.ai-orb:after{content:""!important;display:block!important;position:absolute;inset:-10px;border:1px solid #8b93ff40;border-radius:50%;animation:orbRing 3.2s 1.05s ease-out infinite}
+.ai-orb.thinking{animation:orbFloat 1.2s ease-in-out infinite,orbGlow 1.2s ease-in-out infinite}
+@keyframes orbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes orbRing{0%{transform:scale(.72);opacity:.7}100%{transform:scale(1.55);opacity:0}}
+@keyframes orbGlow{50%{box-shadow:0 0 0 8px #6872ff16,0 0 26px #6872ff60}}
+.status-pill .dot{animation:statusBlink 2.1s ease-in-out infinite;box-shadow:0 0 0 0 #079b7840}
+@keyframes statusBlink{0%,100%{box-shadow:0 0 0 0 #079b7840}50%{box-shadow:0 0 0 5px #079b7800}}
+.run-check{transition:transform .3s var(--ease-spring),background .25s}
+.run-step:has(.run-check:not(:empty)):hover .run-check{transform:scale(1.06)}
+.run-log{box-shadow:inset 0 1px 0 #ffffff0a}
+.toast.show{animation:toastEnter .3s var(--ease-out)}
+@keyframes toastEnter{from{opacity:0;transform:translate(0,12px) scale(.98)}to{opacity:1;transform:translate(0,0) scale(1)}}
+.reveal-ready .card,.reveal-ready .metrics,.reveal-ready .finance-kpi,.reveal-ready .hero{animation:surfaceEnter .55s var(--ease-out) both}
+.reveal-ready .card:nth-of-type(2n){animation-delay:.045s}
+.reveal-ready .card:nth-of-type(3n){animation-delay:.09s}
+@keyframes surfaceEnter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+#nav button:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #818cf8;outline-offset:3px}
+@media(max-width:760px){
+ .hero:after{right:-180px;opacity:.7}
+ .card:hover,.finance-kpi:hover{transform:none}
+ .hero h2{animation-duration:.45s}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+
+/* NEXORA responsive + interaction layer */
+:root{--elite-accent:#7c5cff;--elite-cyan:#2dd4bf}
+.brandmark{background:linear-gradient(135deg,#7c5cff,#25c6da);box-shadow:0 0 24px #7c5cffa0;animation:brandGlow 3.2s ease-in-out infinite}
+@keyframes brandGlow{50%{box-shadow:0 0 30px #2dd4bf80,0 0 50px #7c5cff40}}
+.nav .ico,.list-icon,.f-icon{filter:drop-shadow(0 2px 5px #6b70ff22);transition:transform .2s,filter .2s}
+.nav button:hover .ico,.list-item:hover .list-icon{transform:translateY(-2px) scale(1.08);filter:drop-shadow(0 5px 8px #6b70ff38)}
+/* No halo/ring: the AI mark itself rotates while thinking. */
+.ai-orb{border-radius:12px!important;box-shadow:none!important;outline:0!important}
+.ai-orb.thinking{animation:eliteSpin 1.05s linear infinite;filter:drop-shadow(0 0 10px #737bff8c) saturate(1.25)}
+@keyframes eliteSpin{to{transform:rotateY(360deg) rotateZ(360deg)}}
+.elite-achievement{animation:achievementPop .65s cubic-bezier(.2,.8,.2,1);border-color:#31c48d!important;box-shadow:0 0 0 4px #31c48d20,0 16px 35px #31c48d22!important}
+@keyframes achievementPop{0%{transform:scale(.97)}55%{transform:scale(1.015)}100%{transform:scale(1)}}
+.elite-scam-result{padding:12px;border-radius:10px;margin-top:12px;line-height:1.55;font-size:12px}
+.elite-scam-result.high{background:#fff0f2;border:1px solid #ffc6cf;color:#a6253a}.elite-scam-result.medium{background:#fff6df;border:1px solid #f2d68b;color:#805400}.elite-scam-result.low{background:#e7faf3;border:1px solid #b9ecd9;color:#08694f}
+.elite-history-empty{padding:18px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px}
+.elite-mini-icon{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:10px;background:linear-gradient(135deg,#eef0ff,#e5fbf7);color:#5357dc;font-weight:900;margin-right:8px}
+#reactPaymentHistory table{min-width:500px}#reactPaymentHistory td,#reactPaymentHistory th{padding:10px 7px}
+#reactScamChecker textarea{min-height:110px;width:100%;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}#reactScamChecker textarea:focus{border-color:#7c82ff;box-shadow:0 0 0 3px #7c82ff20}
+.elite-btn{border:0;border-radius:9px;background:linear-gradient(135deg,#5c63ee,#7854df);color:white;font-weight:800;padding:10px 13px;box-shadow:0 7px 18px #5b61df30;transition:transform .18s,box-shadow .18s}.elite-btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px #5b61df40}
+@media(max-width:1050px){.app{grid-template-columns:76px minmax(0,1fr)}.sidebar{padding:18px 9px}.brand{justify-content:center;padding:0}.brand>span:not(.brandmark),.brand small,.navlabel,.nav button .navtext,.sidebar-bottom .profile-text{display:none}.nav button{justify-content:center;padding:12px 6px}.nav .ico{font-size:18px}.main{padding:20px}}
+@media(max-width:700px){.app{display:block}.sidebar{min-height:auto;height:auto;position:sticky;top:0;z-index:50;display:block;padding:8px;background:#10172bf2;backdrop-filter:blur(12px)}.brand{display:none}.sidebar .navlabel,.sidebar-bottom{display:none}.nav{display:flex;overflow:auto;gap:5px}.nav button{min-width:44px;padding:10px;justify-content:center}.main{padding:14px 12px 25px}.topbar{align-items:flex-start;flex-direction:column}.top-actions{width:100%;flex-wrap:wrap}.search{width:min(100%,260px)}.hero{padding:19px;min-height:auto}.hero h2{font-size:22px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}.grid,.grid.equal,.assistant-layout{grid-template-columns:minmax(0,1fr)}.journey{grid-template-columns:repeat(2,minmax(0,1fr))}.step:after{display:none}.form-grid{grid-template-columns:minmax(0,1fr)}.span2{grid-column:auto}.card{padding:14px}.finance-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.chat-input{gap:6px}.chat-input input{min-width:0}.page-title{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.brandmark,.ai-orb.thinking,.elite-achievement{animation:none!important}*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+
+.predictive-security-card{overflow:hidden;position:relative}.predictive-security-card:before{content:"";position:absolute;right:-90px;top:-110px;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,#6b72ff15,transparent 68%);pointer-events:none}.predictive-banner{display:flex;align-items:flex-start;gap:13px;padding:14px;border-radius:12px;background:linear-gradient(110deg,#f3f4ff,#f4fbff);border:1px solid #e1e5ff;margin-bottom:16px}.predictive-banner p{font-size:11px;color:#687390;line-height:1.65;margin:5px 0 0}.predictive-pulse{width:39px;height:39px;flex-shrink:0;border-radius:12px;display:grid;place-items:center;font-size:23px;color:white;background:linear-gradient(145deg,#7b82ff,#4545b8);box-shadow:0 0 0 0 #7179ff40;animation:psPulse 2s infinite}.predictive-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.predictive-result{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fcfdff}.predictive-score{display:flex;align-items:center;gap:13px}.score-ring{width:64px;height:64px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--ps-risk,#6c75f5) var(--ps-angle,0deg),#e9edf6 0);position:relative}.score-ring:before{content:"";position:absolute;inset:6px;border-radius:50%;background:#fff}.score-ring strong{z-index:1;font-size:18px}.predictive-score h4{margin:4px 0;font-size:17px}.predictive-history{display:grid;gap:7px}.ps-history-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;animation:emFadeIn .3s ease both}.ps-history-item strong{font-size:11px}.ps-history-item .subtext{font-size:10px}.ps-history-score{font-weight:900;font-variant-numeric:tabular-nums}.ps-risk-high{color:#c73447}.ps-risk-medium{color:#a66a00}.ps-risk-low{color:#07865f}@keyframes psPulse{0%,100%{box-shadow:0 0 0 0 #7179ff30;transform:translateY(0)}50%{box-shadow:0 0 0 7px #7179ff00;transform:translateY(-2px)}}@media(max-width:650px){.predictive-grid{grid-template-columns:1fr}.predictive-banner{align-items:flex-start}.predictive-score{align-items:flex-start}}
+
+</style>
+
+<style id="elite-mass-unified-motion">
+:root{--elite-glow:rgba(104,114,255,.24);--elite-mint:rgba(16,185,129,.18)}
+html{scroll-behavior:smooth}
+body{background-image:radial-gradient(ellipse at 6% 0%,rgba(105,117,255,.075),transparent 34%),radial-gradient(ellipse at 100% 12%,rgba(15,185,129,.055),transparent 28%)}
+.brandmark{position:relative;isolation:isolate;animation:emBrandFloat 4.2s ease-in-out infinite;box-shadow:0 0 0 1px #ffffff26,0 8px 24px #5458df45}
+.brandmark:after{content:"";position:absolute;inset:-4px;border-radius:13px;border:1px solid #929aff70;animation:emRing 3.2s ease-out infinite;pointer-events:none}
+.hero{isolation:isolate;background-size:180% 180%;animation:emGradient 13s ease infinite}
+.hero:before{content:"";position:absolute;z-index:0;top:-45%;left:-45%;width:32%;height:190%;background:linear-gradient(90deg,transparent,#ffffff15,transparent);transform:rotate(22deg);animation:emShimmer 8s ease-in-out infinite;pointer-events:none}
+.card,.metric,.finance-kpi{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s;transform-origin:center}
+.card:hover,.metric:hover,.finance-kpi:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(26,36,76,.11),0 0 0 1px rgba(104,114,255,.08);border-color:#d4d9ff}
+.nav button{position:relative;overflow:hidden;transition:background .25s,color .25s,transform .25s}
+.nav button:after{content:"";position:absolute;left:0;top:15%;bottom:15%;width:3px;border-radius:3px;background:#a8b0ff;transform:scaleY(0);transition:transform .25s}
+.nav button.active:after{transform:scaleY(1)}.nav button:active,.btn:active,.elite-btn:active{transform:scale(.975)}
+.btn,.elite-btn{transition:transform .18s,box-shadow .22s,filter .22s;position:relative;overflow:hidden}
+.btn:hover,.elite-btn:hover{box-shadow:0 7px 18px rgba(84,88,223,.18);filter:saturate(1.12)}
+.ai-orb{border-radius:13px!important;overflow:hidden;box-shadow:0 0 0 1px #777fff66,0 0 22px var(--elite-glow);transition:box-shadow .3s,filter .3s}
+.ai-orb.thinking{animation:emOrbSpin 1.2s linear infinite,emOrbGlow 1.5s ease-in-out infinite!important;box-shadow:0 0 0 1px #8e96ff,0 0 32px rgba(104,114,255,.52)!important}
+.ai-orb.thinking>*{animation:emCounterSpin 1.2s linear infinite}
+.ai-preparing{display:inline-flex;align-items:center;gap:5px}.prep-dot{width:5px;height:5px;border-radius:50%;background:#6c75f5;animation:emDot 1s ease-in-out infinite}.prep-dot:nth-child(3){animation-delay:.15s}.prep-dot:nth-child(4){animation-delay:.3s}
+.bubble{animation:emBubbleIn .3s cubic-bezier(.2,.8,.2,1) both}.bubble.user{animation-delay:.02s}
+.tag{transition:transform .2s,filter .2s}.tag:hover{transform:translateY(-1px);filter:brightness(.98)}
+.progress>span,.confidence-track>span{position:relative;overflow:hidden}.progress>span:after,.confidence-track>span:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent,#ffffff80,transparent);transform:translateX(-120%);animation:emProgressShine 3.5s ease-in-out infinite}
+.elite-achievement{animation:emAchievement .8s cubic-bezier(.18,.8,.25,1)!important;position:relative}.elite-achievement:after{content:"✦  ACHIEVEMENT UNLOCKED  ✦";position:absolute;z-index:3;top:12px;right:14px;padding:7px 10px;border-radius:999px;color:#fff;background:linear-gradient(100deg,#5d63e9,#8b5cf6,#0eaa7a);font-size:9px;font-weight:900;letter-spacing:1px;box-shadow:0 8px 22px #5458df35;animation:emBadge .9s ease both;pointer-events:none}
+.elite-scam-result{animation:emBubbleIn .35s ease both}.elite-scam-result.high{animation:emWarningPulse 1.2s ease-in-out 2}.elite-history-empty{animation:emFadeIn .5s ease both}
+.toast.show{animation:emToastIn .28s cubic-bezier(.2,.8,.2,1) both}
+#reactPaymentHistory tr{animation:emFadeIn .4s ease both}#reactPaymentHistory tr:nth-child(2){animation-delay:.04s}#reactPaymentHistory tr:nth-child(3){animation-delay:.08s}#reactPaymentHistory tr:nth-child(4){animation-delay:.12s}
+input:focus,textarea:focus,select:focus{transition:box-shadow .2s,border-color .2s}
+@keyframes emBrandFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes emRing{0%{transform:scale(.9);opacity:.7}100%{transform:scale(1.25);opacity:0}}
+@keyframes emGradient{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes emShimmer{0%,55%{left:-48%;opacity:0}65%{opacity:1}90%,100%{left:130%;opacity:0}}
+@keyframes emOrbSpin{to{transform:rotate(360deg)}}@keyframes emCounterSpin{to{transform:rotate(-360deg)}}
+@keyframes emOrbGlow{0%,100%{filter:saturate(1);opacity:1}50%{filter:saturate(1.45);opacity:.82}}
+@keyframes emDot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-4px);opacity:1}}
+@keyframes emBubbleIn{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes emProgressShine{0%,45%{transform:translateX(-120%)}80%,100%{transform:translateX(120%)}}
+@keyframes emAchievement{0%{box-shadow:0 0 0 0 #7b83ff00}30%{box-shadow:0 0 0 7px #7b83ff2b,0 0 35px #7b83ff30}100%{box-shadow:0 0 0 0 #7b83ff00}}
+@keyframes emBadge{0%{opacity:0;transform:translateY(-8px) scale(.8)}65%{opacity:1;transform:translateY(2px) scale(1.04)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes emWarningPulse{0%,100%{box-shadow:0 0 0 0 #dc435700}50%{box-shadow:0 0 0 5px #dc435722}}
+@keyframes emFadeIn{from{opacity:0}to{opacity:1}}@keyframes emToastIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:760px){.card:hover,.metric:hover,.finance-kpi:hover{transform:none}.hero:before{width:45%}.elite-achievement:after{position:relative;display:inline-block;top:auto;right:auto;margin:0 0 8px 8px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+
+<style id="guide-css">
+.g-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+.g-flow span.chip{background:#ffffff14;border:1px solid #ffffff26;color:#e6e9ff;border-radius:20px;padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer}
+.g-flow span.chip:hover{background:#ffffff26}
+.g-flow i{color:#9faed8;font-style:normal}
+.g-list{display:grid;gap:12px}
+.g-item{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.g-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:15px 18px;font-weight:700;font-size:14px}
+.g-item summary::-webkit-details-marker{display:none}
+.g-num{width:28px;height:28px;border-radius:9px;background:var(--blue2);color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:12px;flex:none}
+.g-sum{flex:1;min-width:0}.g-sum small{display:block;color:var(--muted);font-weight:500;font-size:11px;margin-top:2px}
+.g-chev{color:var(--muted);transition:transform .15s}
+.g-item[open] .g-chev{transform:rotate(90deg)}
+.g-item[open] summary{border-bottom:1px solid var(--line)}
+.g-body{padding:16px 18px 18px;display:grid;gap:14px}
+.g-steps{margin:0;padding:0;list-style:none;display:grid;gap:9px;counter-reset:s}
+.g-steps li{counter-increment:s;display:flex;gap:11px;line-height:1.55;color:#2a3450}
+.g-steps li:before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:var(--nav2);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.g-keep{background:#f7f8fd;border:1px dashed #cfd6ea;border-radius:10px;padding:12px 14px}
+.g-keep b{display:block;margin-bottom:6px;font-size:11px;letter-spacing:.8px;color:var(--muted);text-transform:uppercase}
+.g-keep ul{margin:0;padding-left:17px;display:grid;gap:4px;line-height:1.5}
+.g-actions{display:flex;gap:8px;flex-wrap:wrap}
+.g-tools{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+@media(max-width:700px){.g-item summary{padding:13px 14px}.g-body{padding:14px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">✦</div><div>NEXORA AI<small>INTELLIGENT OPERATIONS</small></div></div>
+  <div><div class="navlabel">START HERE</div><nav class="nav">
+    <button data-page="guide"><span class="ico">✦</span>Beginner guide</button>
+  </nav></div>
+  <div><div class="navlabel">MONITOR</div><nav class="nav" id="nav">
+    <button class="active" data-page="overview"><span class="ico">▦</span>Overview</button>
+    <button data-page="journeys"><span class="ico">⇢</span>Journey checks</button>
+    <button data-page="incidents"><span class="ico">△</span>Incidents <span class="count" id="incidentCount">3</span></button>
+    <button data-page="analytics"><span class="ico">⌁</span>Reliability analytics</button>
+    <button data-page="recovery"><span class="ico">↻</span>Recovery center</button>
+    <button data-page="payments"><span class="ico">₹</span>Payments & orders</button>
+  </nav></div>
+  <div><div class="navlabel">BUSINESS SYSTEMS</div><nav class="nav">
+    <button data-page="integrations"><span class="ico">⌘</span>Integrations</button>
+    <button data-page="sales"><span class="ico">◎</span>Sales autopilot</button>
+    <button data-page="assistant"><span class="ico">✳</span>AI copilot</button>
+    <button data-page="security"><span class="ico">♢</span>Security & audit</button>
+    <button data-page="settings"><span class="ico">⚙</span>Settings</button>
+  </nav></div>
+  <div class="sidebar-bottom"><div class="avatar">ST</div><div><b style="color:#fff">Workspace admin</b><br>Demo environment · Admin</div></div>
+</aside>
+<main class="main">
+<header class="topbar"><div><div class="eyebrow">Workspace / <span id="crumb">Overview</span></div><h1 class="page-title" id="pageTitle">Business journey health</h1></div><div class="top-actions"><input class="search" id="globalSearch" placeholder="Search journeys, incidents…"><span class="status-pill"><span class="dot"></span> Systems operational</span><button class="btn" onclick="notify('Documentation panel is a prototype interaction.')">? Help</button></div></header>
+
+<section class="page" id="page-guide">
+  <div class="hero"><div class="hero-content"><div class="eyebrow" style="color:#aeb9e4">BEGINNER WORKFLOW GUIDE</div><h2>Learn every dashboard, one step at a time.</h2><p>Follow the workflow for each page in the sidebar. Every setting is described exactly as it appears in the dashboard; this guide only explains, it never changes a setting. The whole app runs in demo mode with synthetic data.</p>
+  <div class="g-flow" id="gFlow"></div></div></div>
+  <div class="g-tools"><button class="btn" onclick="gToggle(true)">Expand all</button><button class="btn" onclick="gToggle(false)">Collapse all</button></div>
+  <div class="g-list" id="gList"></div>
+</section>
+<section class="page active" id="page-overview">
+  <div class="hero"><div class="hero-content"><div class="eyebrow" style="color:#aeb9e4">AUTONOMOUS TRANSACTION MONITORING</div><h2>Protect the entire business journey — not just uptime.</h2><p>NEXORA AI runs synthetic browser and API transactions, validates each critical step, detects emerging failures, explains likely root causes, and recommends safe recovery actions with human oversight.</p><div class="hero-meta"><span class="tag">demo-shop.local</span><span>● Checks every 30 seconds</span><span>● 3 monitored regions</span></div><div class="hero-actions"><button class="btn primary" onclick="runCheck()">▶ Run journey check</button><button class="btn" onclick="go('journeys')">Explore workflows ↗</button></div></div></div>
+  <div class="metrics">
+    <div class="metric"><div class="label">Journey success · 24h</div><div class="value" id="successMetric">99.2%</div><div class="sub">↑ 0.4% vs. prior day</div></div>
+    <div class="metric"><div class="label">Mean time to recover</div><div class="value">41<span style="font-size:15px">s</span></div><div class="sub">↓ 68% with guided recovery</div></div>
+    <div class="metric"><div class="label">Open incidents</div><div class="value" id="openMetric">3</div><div class="sub bad">1 high severity</div></div>
+    <div class="metric"><div class="label">Risk prediction · next hour</div><div class="value">Low</div><div class="sub">No broad outage forecast</div></div>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="card-head"><div><h3>Critical checkout journey</h3><div class="subtext">Latest synthetic run · 10:42:48 · Region: Chennai</div></div><span class="tag green" id="journeyStatus">Recovered</span></div>
+      <div class="row-between"><span class="subtext">Run 483 · Verification passed</span><span class="mono">Total 1.79 s</span></div>
+      <div class="journey">
+        <div class="step"><div class="step-title">Sign in <span>✓</span></div><div class="step-time">205 ms</div></div>
+        <div class="step"><div class="step-title">Search <span>✓</span></div><div class="step-time">300 ms</div></div>
+        <div class="step"><div class="step-title">Add to cart <span>✓</span></div><div class="step-time">270 ms</div></div>
+        <div class="step"><div class="step-title">Checkout <span>✓</span></div><div class="step-time">440 ms</div></div>
+        <div class="step"><div class="step-title">Payment <span>✓</span></div><div class="step-time">380 ms</div></div>
+        <div class="step"><div class="step-title">Confirmation <span>✓</span></div><div class="step-time">190 ms</div></div>
+      </div>
+      <div class="callout"><span>✦</span><div><b>AI diagnosis:</b> Earlier payment errors match incident 14 — database connection pool exhaustion. The approved worker restart restored service; the verification run passed all six steps.</div></div>
+    </div>
+    <div class="card"><div class="card-head"><div><h3>Active incident signals</h3><div class="subtext">Ranked by customer impact and confidence</div></div><button class="btn" onclick="go('incidents')">View all</button></div>
+      <div class="list">
+        <div class="list-item"><div class="list-icon red">!</div><div style="flex:1"><div class="row-between"><strong>Payment API elevated errors</strong><span class="tag red">High</span></div><p>HTTP 500 in 3 of 5 retries · predicted impact: checkout conversion</p><div class="progress" style="margin-top:8px"><span style="width:82%;background:var(--red)"></span></div></div></div>
+        <div class="list-item"><div class="list-icon amber">◷</div><div style="flex:1"><div class="row-between"><strong>Search latency trending up</strong><span class="tag amber">Medium</span></div><p>p95 increased 24% over baseline · watch threshold 1.2 s</p></div></div>
+        <div class="list-item"><div class="list-icon green">✓</div><div style="flex:1"><div class="row-between"><strong>Order confirmation recovered</strong><span class="tag green">Resolved</span></div><p>Verification run passed at 10:42:48</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid equal">
+    <div class="card"><div class="card-head"><div><h3>Payment latency · p95</h3><div class="subtext">Slow responses are an early warning signal</div></div><span class="tag blue">Last 30 min</span></div>
+      <svg class="mini-chart" viewBox="0 0 520 150" preserveAspectRatio="none" aria-label="Payment latency line chart"><defs><linearGradient id="fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5865f2" stop-opacity=".2"/><stop offset="100%" stop-color="#5865f2" stop-opacity="0"/></linearGradient></defs><g stroke="#edf0f6" stroke-width="1"><path d="M30 25H510M30 60H510M30 95H510M30 130H510"/></g><path d="M30 110 L55 107 L80 112 L105 108 L130 110 L155 106 L180 111 L205 108 L230 109 L250 25 L270 31 L290 22 L310 29 L330 26 L350 95 L370 110 L395 109 L420 112 L445 108 L470 110 L510 108 L510 130 L30 130Z" fill="url(#fill)"/><path d="M30 110 L55 107 L80 112 L105 108 L130 110 L155 106 L180 111 L205 108 L230 109 L250 25 L270 31 L290 22 L310 29 L330 26 L350 95 L370 110 L395 109 L420 112 L445 108 L470 110 L510 108" fill="none" stroke="#5964ed" stroke-width="2.5" stroke-linejoin="round"/><path d="M30 78H510" stroke="#e5a324" stroke-dasharray="4 4"/><text x="510" y="72" font-size="9" fill="#b07b16" text-anchor="end">Alert threshold 1.2s</text><circle cx="250" cy="25" r="4" fill="#fff" stroke="#e5485b" stroke-width="2"/><text x="246" y="15" font-size="9" fill="#e5485b" text-anchor="end">Failure spike</text><circle cx="370" cy="110" r="4" fill="#fff" stroke="#0eaa7a" stroke-width="2"/><text x="378" y="101" font-size="9" fill="#0eaa7a">Recovered</text><g fill="#8994ad" font-size="9"><text x="30" y="145">10:30</text><text x="145" y="145">10:37</text><text x="260" y="145">10:44</text><text x="375" y="145">10:51</text><text x="510" y="145" text-anchor="end">10:58</text></g></svg>
+      <div class="chart-legend"><span><i class="legend-dot" style="background:#5964ed"></i>p95 latency</span><span><i class="legend-dot" style="background:#e5a324"></i>Alert threshold</span></div>
+    </div>
+    <div class="card"><div class="card-head"><div><h3>Incident timeline</h3><div class="subtext">From first failure to verified recovery</div></div><button class="btn" onclick="go('incidents')">Open log</button></div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-time">10:41:39</div><div class="timeline-mark red"></div><div><strong>Failure injected</strong><p>Payment worker loses its connections</p></div></div>
+        <div class="timeline-item"><div class="timeline-time">10:42:07</div><div class="timeline-mark red"></div><div><strong>Failure confirmed</strong><p>Retried once to rule out a transient blip</p></div></div>
+        <div class="timeline-item"><div class="timeline-time">10:42:13</div><div class="timeline-mark"></div><div><strong>Likely cause identified</strong><p>Matched to historical incident 14</p></div></div>
+        <div class="timeline-item"><div class="timeline-time">10:42:34</div><div class="timeline-mark amber"></div><div><strong>Worker restarted</strong><p>Approved action executed under policy</p></div></div>
+        <div class="timeline-item"><div class="timeline-time">10:42:48</div><div class="timeline-mark green"></div><div><strong>Recovery verified</strong><p>All six steps passed in run 483</p></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid equal">
+    <div class="card"><div class="card-head"><div><h3>AI payment watch</h3><div class="subtext">Early warnings from synthetic checks and aggregate payment signals</div></div><span class="tag blue">Predictive</span></div>
+      <div class="notice-row"><span class="notice-dot" style="background:var(--amber)"></span><div><strong>Payment failure risk rising · 12 min horizon</strong><p>Demo model sees a 17% increase in timeout signals. Check gateway latency and connection pool saturation before the next traffic peak.</p></div></div>
+      <div class="notice-row"><span class="notice-dot" style="background:var(--green)"></span><div><strong>Order confirmation path healthy</strong><p>Latest synthetic checkout passed all six assertions. No action required.</p></div></div>
+      <button class="btn" onclick="go('payments')">Open payments & orders ↗</button>
+    </div>
+    <div class="card"><div class="card-head"><div><h3>Recent customer-facing alerts</h3><div class="subtext">Drafts only; delivery requires verified channels</div></div><span class="tag amber">2 to review</span></div>
+      <div class="notice-row"><span class="notice-dot" style="background:var(--red)"></span><div><strong>Checkout payment may be delayed</strong><p>Suggested customer-safe message is ready for human review. Do not expose internal traces or payment data.</p></div></div>
+      <div class="notice-row"><span class="notice-dot" style="background:var(--blue)"></span><div><strong>Payment received · order ORD-2048</strong><p>₹2,499 · Captured in demo data · order confirmation verified.</p></div></div>
+      <button class="btn" onclick="go('assistant')">Ask AI to draft an update</button>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-payments">
+  <div class="hero"><div class="hero-content"><div class="eyebrow" style="color:#aeb9e4">PAYMENTS · ORDERS · RECONCILIATION</div><h2>Track money movement with explainable risk signals.</h2><p>Monitor account balance, successful captures, refunds, settlement mismatches, and checkout risk in one place. Values shown here are synthetic demo figures, not live bank or gateway data.</p><div class="hero-actions"><button class="btn primary" onclick="notify('Reconciliation preview generated from demo records only.')">Run reconciliation preview</button><button class="btn" onclick="exportCSV('payments')">Export payment CSV ↓</button></div></div></div>
+  <div class="payment-notice" id="paymentsNotificationCenter" role="status"><strong>Payment notification center</strong><span>Demo mode: no live payment provider is connected. Customer-facing updates require server-side verification of order state, amount, currency, and signed provider events.</span><div class="notice-meta">In-app preview only · Email/Slack/SMS delivery requires a configured backend provider.</div></div>
+  <div class="finance-kpis">
+    <div class="finance-kpi"><span class="f-icon">₹</span><div class="f-label">Available account balance</div><div class="f-value">₹8,42,650</div><div class="f-foot">Demo ledger · synced 2 min ago</div></div>
+    <div class="finance-kpi"><span class="f-icon">↗</span><div class="f-label">Payments received · today</div><div class="f-value">₹1,26,480</div><div class="f-foot">+8.4% vs. previous day</div></div>
+    <div class="finance-kpi"><span class="f-icon">✓</span><div class="f-label">Successful transactions</div><div class="f-value">1,284</div><div class="f-foot">98.7% authorization rate</div></div>
+    <div class="finance-kpi"><span class="f-icon">!</span><div class="f-label">Predicted payment risk</div><div class="f-value">Medium</div><div class="f-foot" style="color:var(--amber)">3 anomalies need review</div></div>
+  </div>
+  <div class="grid equal"><div class="card"><div class="card-head"><div><h3>AI payment intelligence</h3><div class="subtext">Signals to review, not automatic financial decisions</div></div><span class="tag amber">3 alerts</span></div>
+    <div class="notice-row"><span class="notice-dot" style="background:var(--red)"></span><div><strong>Possible duplicate capture · ORD-2081</strong><p>Two capture events share the same order reference within 4 seconds. Verify gateway idempotency keys and settlement records before any refund or reversal.</p><button class="btn" style="margin-top:7px" onclick="ask('Explain the possible duplicate capture for ORD-2081 and recommend safe verification steps.')">Ask AI about this</button></div></div>
+    <div class="notice-row"><span class="notice-dot" style="background:var(--amber)"></span><div><strong>Payment may fail · checkout risk 72/100</strong><p>Latency increased and issuer response time is above baseline. Do not retry charges blindly; use idempotency keys and inspect payment intent status.</p><button class="btn" style="margin-top:7px" onclick="ask('How should we investigate a payment with a 72 out of 100 risk score?')">Investigate with AI</button></div></div>
+    <div class="notice-row"><span class="notice-dot" style="background:var(--blue)"></span><div><strong>Settlement reconciliation pending</strong><p>Four records are not yet matched to the settlement batch. Wait for the provider's expected settlement window before escalation.</p></div></div>
+  </div><div class="card"><div class="card-head"><div><h3>Recent transactions</h3><div class="subtext">Masked identifiers · illustrative records</div></div><button class="btn" onclick="notify('Transaction detail is simulated in this prototype.')">View details</button></div><div class="table-wrap"><table><thead><tr><th>ORDER</th><th>CUSTOMER</th><th>AMOUNT</th><th>PAYMENT</th><th>ORDER STATE</th><th>RISK</th></tr></thead><tbody>
+    <tr><td><b>ORD-2048</b><br><span class="subtext">10:42:48</span></td><td>cus_•••184</td><td>₹2,499</td><td><span class="tag green">Received</span></td><td>Confirmed</td><td><span class="tag green">Low</span></td></tr>
+    <tr><td><b>ORD-2081</b><br><span class="subtext">10:41:09</span></td><td>cus_•••907</td><td>₹8,990</td><td><span class="tag amber">Review</span></td><td>Processing</td><td><span class="tag red">High</span></td></tr>
+    <tr><td><b>ORD-2077</b><br><span class="subtext">10:39:55</span></td><td>cus_•••421</td><td>₹1,250</td><td><span class="tag green">Received</span></td><td>Shipped</td><td><span class="tag green">Low</span></td></tr>
+    <tr><td><b>ORD-2072</b><br><span class="subtext">10:37:22</span></td><td>cus_•••663</td><td>₹4,600</td><td><span class="tag red">Failed</span></td><td>Awaiting payment</td><td><span class="tag amber">Medium</span></td></tr>
+    <tr><td><b>ORD-2068</b><br><span class="subtext">10:31:14</span></td><td>cus_•••310</td><td>₹3,180</td><td><span class="tag green">Received</span></td><td>Confirmed</td><td><span class="tag green">Low</span></td></tr>
+  </tbody></table></div></div></div>
+  <div class="grid equal" style="margin-top:16px">
+    <div class="card"><div class="card-head"><div><h3>Payment history · NEXORA ledger</h3><div class="subtext">Persistent browser-side demo history; refresh-safe, exportable, never a bank ledger.</div></div><button class="btn" onclick="EliteMass.exportHistory()">Export history ↓</button></div><div id="reactPaymentHistory"><div class="elite-history-empty">Loading payment history…</div></div></div>
+    <div class="card"><div class="card-head"><div><h3>Scam & phishing signal checker</h3><div class="subtext">Local heuristic screening; not a guarantee or a substitute for provider fraud controls.</div></div><span class="tag amber">Safety AI</span></div><div id="reactScamChecker"><div class="elite-history-empty">Loading scam checker…</div></div></div>
+  </div>
+  <div class="card" style="margin-top:16px" id="djangoCheckoutCard"><div class="card-head"><div><h3>Authenticated checkout · Django gateway</h3><div class="subtext">Creates a server-side payment intent only after session authentication. Card details are collected by your payment provider, never in this HTML.</div></div><span class="tag amber" id="djangoPaymentStatus">Sandbox / not connected</span></div><form class="form-grid" onsubmit="return EliteDjango.createPayment(event)"><div class="field"><label for="djangoPaymentAmount">Amount (INR)</label><input id="djangoPaymentAmount" type="number" min="1" max="1000000" step="1" value="499" required></div><div class="field"><label for="djangoPaymentOrder">Order reference</label><input id="djangoPaymentOrder" maxlength="80" value="ORD-ELITE-001" required></div><div class="field span2"><label for="djangoPaymentNote">Description</label><input id="djangoPaymentNote" maxlength="160" placeholder="What is this payment for?" value="NEXORA demo order"></div><div class="span2 d-flex flex-wrap gap-2"><button class="btn primary" type="submit">Create secure checkout ↗</button><button class="btn" type="button" onclick="EliteDjango.refreshHistory()">Refresh authenticated history</button></div></form><p id="djangoPaymentMessage" class="subtext mt-3" role="status">Connect the Django API in Settings. This form does not collect card numbers, CVV, UPI PIN, or OTP.</p></div>
+  <div class="card" style="margin-top:16px"><div class="card-head"><div><h3>Backend command center</h3><div class="subtext">Calls configured server endpoints when available; safely falls back to clearly labeled demo actions.</div></div><span class="tag blue" id="backendActionStatus">Demo fallback</span></div><div class="d-flex flex-wrap gap-2"><button class="btn primary" onclick="EliteMass.backendAction('health')">⌁ Test backend</button><button class="btn" onclick="EliteMass.backendAction('payments')">↻ Sync payment history</button><button class="btn" onclick="EliteMass.backendAction('alerts')">⚑ Load risk alerts</button><button class="btn" onclick="EliteMass.simulatePayment()">＋ Add sandbox payment</button><button class="btn danger" onclick="EliteMass.soundTest()">♫ Test alert sound</button></div><p class="subtext mt-3 mb-0" id="backendActionLog" aria-live="polite">No live payment processor is connected. Sandbox simulation does not move money.</p></div>
+  <div class="callout" style="margin-top:16px"><span>♢</span><div><b>Financial safety:</b> This screen never initiates real charges, refunds, or transfers. Production workflows must verify signed gateway webhooks, reconcile provider records, use idempotency keys, enforce least privilege, and require separate approval for high-impact actions.</div></div>
+</section>
+
+<section class="page" id="page-journeys">
+  <div class="hero"><div class="hero-content"><div class="eyebrow" style="color:#aeb9e4">SYNTHETIC BROWSER + API TESTING</div><h2>Test real customer outcomes, continuously.</h2><p>Validate each step's response, data, and business confirmation — not just whether a server responds.</p><div class="hero-actions"><button class="btn primary" onclick="runCheck()">▶ Run selected check</button><button class="btn" onclick="openModal('newJourney')">＋ Create journey</button></div></div></div>
+  <div class="metrics"><div class="metric"><div class="label">Active journeys</div><div class="value" id="activeJourneys">12</div><div class="sub">Across 3 regions</div></div><div class="metric"><div class="label">Checks today</div><div class="value">2,880</div><div class="sub">Every 30 seconds</div></div><div class="metric"><div class="label">Assertions passed</div><div class="value">99.6%</div><div class="sub">Last 24 hours</div></div><div class="metric"><div class="label">Median duration</div><div class="value">1.8s</div><div class="sub">All key flows</div></div></div>
+  <div class="card"><div class="card-head"><div><h3>Monitored business journeys</h3><div class="subtext">Synthetic identities and sandbox payments only — never real customer transactions</div></div><div class="filters"><select id="journeyFilter" onchange="filterJourneys()"><option value="all">All statuses</option><option value="Healthy">Healthy</option><option value="Degraded">Degraded</option><option value="Failed">Failed</option></select><button class="btn" onclick="exportCSV('journeys')">Export CSV ↓</button></div></div>
+  <div class="table-wrap"><table id="journeyTable"><thead><tr><th>JOURNEY</th><th>TYPE</th><th>REGION</th><th>LAST RUN</th><th>SUCCESS</th><th>P95</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody>
+  <tr data-status="Healthy"><td><b>Checkout → Payment → Order</b><br><span class="subtext">6 validations · ID SYN-001</span></td><td>Browser + API</td><td>Chennai</td><td class="mono">10:42:48</td><td>99.8%</td><td>1.79 s</td><td><span class="tag green">Healthy</span></td><td><button class="btn" onclick="runCheck()">Run</button></td></tr>
+  <tr data-status="Degraded"><td><b>Product search</b><br><span class="subtext">4 validations · ID SYN-002</span></td><td>API</td><td>Mumbai</td><td class="mono">10:42:30</td><td>98.1%</td><td>1.31 s</td><td><span class="tag amber">Degraded</span></td><td><button class="btn" onclick="notify('Search journey queued for a synthetic run.')">Run</button></td></tr>
+  <tr data-status="Healthy"><td><b>Account sign-in</b><br><span class="subtext">5 validations · ID SYN-003</span></td><td>Browser</td><td>Singapore</td><td class="mono">10:42:18</td><td>99.9%</td><td>620 ms</td><td><span class="tag green">Healthy</span></td><td><button class="btn" onclick="notify('Sign-in journey queued for a synthetic run.')">Run</button></td></tr>
+  <tr data-status="Failed"><td><b>Refund status API</b><br><span class="subtext">3 validations · ID SYN-004</span></td><td>API</td><td>Chennai</td><td class="mono">10:41:52</td><td>94.2%</td><td>2.4 s</td><td><span class="tag red">Failed</span></td><td><button class="btn" onclick="go('incidents')">Investigate</button></td></tr>
+  </tbody></table></div></div>
+  <div class="grid equal" style="margin-top:16px"><div class="card"><h3>Assertion coverage</h3><div class="subtext">Every journey validates multiple outcomes</div><div class="list" style="margin-top:14px"><div class="list-item"><div class="list-icon green">✓</div><div><strong>Response and status</strong><p>HTTP status, response shape, latency budget</p></div></div><div class="list-item"><div class="list-icon green">✓</div><div><strong>Business data</strong><p>Cart total, currency, order ID, payment state</p></div></div><div class="list-item"><div class="list-icon green">✓</div><div><strong>Confirmation</strong><p>Expected order confirmation and safe cleanup</p></div></div></div></div><div class="card"><h3>Execution safeguards</h3><div class="subtext">Protect production systems while testing</div><div class="list" style="margin-top:14px"><div class="list-item"><div class="list-icon">♢</div><div><strong>Sandbox-first payments</strong><p>Test credentials and synthetic records only</p></div></div><div class="list-item"><div class="list-icon">⌁</div><div><strong>Secret masking</strong><p>Credentials are stored outside the browser and never logged</p></div></div><div class="list-item"><div class="list-icon">⏱</div><div><strong>Rate and concurr
